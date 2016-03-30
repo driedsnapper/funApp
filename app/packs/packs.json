@@ -1,0 +1,23 @@
+[
+  {
+    "flavour" : "фуа-гра",
+    "weight" : 0.5,
+    "description" : "Печень утки разварная с артишоками.",
+    "image" : "img/cat.png",
+    "condition" : true
+  },
+  {
+    "flavour" : "рыбой",
+    "weight" : 2,
+    "description" : "Головы щучьи с чесноком да свежайшая сёмгушка.",
+    "image" : "img/cat.png",
+    "condition" : true
+  },
+  {
+    "flavour" : "курой",
+    "weight" : 5,
+    "description" : "Филе из цыплят с трюфелями в бульоне.",
+    "image" : "img/cat.png",
+    "condition" : false
+  }
+]

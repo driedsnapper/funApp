@@ -1,0 +1,45 @@
+
+<div class="grid-container">
+    <div class="title-h1">Ты сегодня покормил кота?</div>
+    <div class="item-wrapper"
+         ng-repeat="pack in packs"
+         ng-class="pack.condition ? {active: selected[$index], hover: hovered} : {disabled: !pack.condition}" >
+        <div class="item"
+             ng-click="select($index); catlike = false"
+             ng-mouseenter = "hovered = true; catlike = selected[$index]"
+             ng-mouseleave = "hovered = false; catlike = selected[$index]">
+            <div class="plate back">
+                <div class="top"></div>
+                <div class="main"></div>
+                <div class="title-weight">
+                    {{pack.weight}}
+                    <p>кг</p>
+                </div>
+            </div>
+            <div class="plate front">
+                <div class="top"></div>
+                <div class="main">
+                    <img ng-src="{{pack.image}}" alt="cat">
+                </div>
+            </div>
+            <div class="description">
+                <p class="title-h4" ng-show="pack.condition ? (!hovered || !selected[$index] || !catlike) : true">Сказочное заморское яство</p>
+                <p class="title-h4 catlike" ng-show="pack.condition ? (hovered && selected[$index] && catlike) : false">Котэ не одобряет?</p>
+                <p class="title-h2">Нямушка</p>
+                <p class="title-h3">с {{pack.flavour}}</p>
+                <p class="title-h5">
+                    {{pack.weight*20}} порций <br/>
+                    <span>{{mice(pack)}} в подарок</span>
+                </p>
+            </div>
+        </div>
+        <p class="bottom-text">
+            <span ng-show="!selected[$index] && pack.condition">Чего сидишь? Порадуй котэ, <span class="dashed"
+                                                                               ng-click="select($index)"
+                                                                               ng-mouseenter = "hovered = true"
+                                                                               ng-mouseleave = "hovered = false">купи.</span></span>
+            <span ng-show="selected[$index] && pack.condition">{{pack.description}}</span>
+            <span ng-show="!pack.condition">Печалька, с курой закончился.</span>
+        </p>
+    </div>
+</div>

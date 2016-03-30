@@ -1,0 +1,104 @@
+//=======================
+// Точки для media-queries
+//=======================
+$media1200: 1200px;
+$media900: 900px;
+$media400: 400px;
+
+//=======================
+// Цвета
+//=======================
+$white: #ffffff;
+$plate_white: #f2f2f2;
+$default-blue: #1698d9;
+$default-blue-hover: #2ea8e6;
+$active: #d91667;
+$active-hover: #e52e7a;
+$disabled: #b3b3b3;
+
+
+//=======================
+// Текст
+//=======================
+$text_color_gray: #666666;
+$text_color_black: #000000;
+$text_color_white: #ffffff;
+$text_disabled_yellow: #ffff66;
+
+
+//=======================
+// Шрифты
+//=======================
+
+@font-face {
+  font-family: 'Exo_Thin';
+  src:url('../font/exo_2_0_thin.eot'),
+  url('../font/exo_2_0_thin.otf');
+}
+@font-face {
+  font-family: 'Trebuchet MS';
+  src: local('Trebuchet MS');
+}
+
+.title-h1 {
+  font-family: 'Exo_Thin';
+  color: $text_color_white;
+  @include font-size(36px, 36px);
+  @include media_interval(0, $media400) {
+    @include font-size(30px, 30px);
+  }
+}
+.title-h2 {
+  font-family: 'Trebuchet MS';
+  font-weight: bold;
+  letter-spacing: 1.8px;
+  color: $text_color_black;
+  @include font-size(48px, 48px);
+  @include media_interval(0, $media400) {
+    @include font-size(38px, 38px);
+  }
+}
+.title-h3 {
+  font-family: 'Trebuchet MS';
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: $text_color_black;
+  @include font-size(24px, 24px);
+  @include media_interval(0, $media400) {
+    @include font-size(20px, 20px);
+  }
+}
+.title-h4 {
+  font-family: 'Trebuchet MS';
+  font-weight: normal;
+  color: $text_color_gray;
+  @include font-size(16px, 16px);
+  @include media_interval(0, $media400) {
+    @include font-size(14px, 14px);
+  }
+}
+.title-h5 {
+  font-family: 'Trebuchet MS';
+  font-weight: normal;
+  color: $text_color_gray;
+  @include font-size(14px, 16px);
+  @include media_interval(0, $media400) {
+    @include font-size(13px, 15px);
+  }
+}
+.title-weight {
+  font-family: 'Trebuchet MS';
+  font-weight: normal;
+  color: $text_color_white;
+  @include font-size(42px, 42px);
+  @include media_interval(0, $media400) {
+    @include font-size(31px, 31px);
+  }
+
+  p {
+    @include font-size(21px, 22px);
+    @include media_interval(0, $media400) {
+      @include font-size(18px, 19px);
+    }
+  }
+}

@@ -1,0 +1,247 @@
+@import 'mixins';
+
+@include global-reset;
+
+@mixin plate($color, $border-radius) {
+  width: 100%;
+  height: 100%;
+  @include flexbox();
+  @include flex-direction(column);
+
+  .top {
+    @include flex-shrink(0);
+    @include flexbox();
+
+    &::before {
+      content: '';
+      display: inline-block;
+      border-bottom: 42px solid $color;
+      border-left: 42px solid transparent;
+      width: 1px;
+      margin-right: -1px;
+      @include flex-shrink(0);
+      @include transition(all 0.2s ease-out 0.2s);
+    }
+    &::after {
+      content: '';
+      display: inline-block;
+      height: 43px;
+      margin-bottom: -1px;
+      background: $color;
+      border-radius: 0 $border-radius 0 0;
+      @include flex-basis(278px);
+      @include transition(all 0.2s ease-out 0.2s);
+    }
+  }
+  .main {
+    background-color: $color;
+    border-radius: 0 0 $border-radius $border-radius;
+    @include flex-basis(438px);
+    @include transition(all 0.2s ease-out 0.2s);
+  }
+  &.back .title-weight{
+    position: absolute;
+    z-index: 1;
+    bottom: 15px;
+    right: 15px;
+    border-radius: 100%;
+    background-color: $color;
+    padding: 10px 0;
+    width: 80px;
+    height: 80px;
+    @include border-box();
+    @include transition(all 0.2s ease-out 0.2s);
+  }
+  @include media_interval(0, $media400) {
+    .top::before {
+      border-bottom: 32px solid $color;
+      border-left: 32px solid transparent;
+    }
+    .top::after {
+      height: 33px;
+    }
+    &.back .title-weight {
+      bottom: 12px;
+      right: 12px;
+      width: 70px;
+      height: 70px;
+    }
+  }
+}
+
+html {
+  height: 100%;
+}
+body {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+#packs {
+  display: table-cell;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), transparent, rgba(0, 0, 0, 0.5)), url("../img/pattern.bmp");
+  vertical-align: middle;
+  padding: 50px 0;
+
+  .grid-container {
+    margin: 0 auto;
+    padding: 0 40px;
+    max-width: 1200px;
+    font-size: 0;
+    text-align: center;
+  }
+  .title-h1 {
+    text-align: center;
+    margin-bottom: 12px;
+    width: 100%;
+  }
+
+  .item-wrapper {
+    font-family: 'Trebuchet MS';
+    display: inline-block;
+    margin-bottom: 27px;
+    width: 33.33%;
+    @include border-box();
+
+    .item {
+      position: relative;
+      height: 480px;
+      width: 320px;
+      padding: 4px;
+      margin: 15px auto;
+      @include border-box();
+      cursor: pointer;
+
+      .plate.back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include plate($default-blue, 12px);
+      }
+      .plate.front {
+        position: relative;
+        @include plate($plate_white, 10px);
+
+        .main {
+          position: relative;
+          overflow: hidden;
+        }
+        img {
+          position: absolute;
+          bottom: -21.5%;
+          left: -9%;
+          max-width: 368px;
+        }
+
+      }
+      .description {
+        position: absolute;
+        @include border-box();
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 23px 27px 0 47px;
+        text-align: left;
+
+        .title-h2 {
+          padding-bottom: 5px;
+        }
+        .title-h3 {
+          padding: 0 0 17px 2px;
+        }
+        .title-h4 {
+          padding-bottom: 9px;
+        }
+        .title-h5 {
+          padding-left: 2px;
+        }
+      }
+
+    }
+
+    .bottom-text {
+      color: $text_color_white;
+      @include font-size(13px, 15px);
+    }
+    .dashed {
+      border-bottom: 1px dashed;
+      color: $default-blue;
+      cursor: pointer;
+      @include transition(all 0.2s ease-out 0.2s);
+    }
+    .catlike {
+      color: $active-hover;
+    }
+
+    &.active {
+      .item .plate.back {
+        @include plate($active, 12px);
+      }
+      &.hover {
+        .item .plate.back {
+          @include plate($active-hover, 12px);
+        }
+      }
+    }
+    &.hover {
+      .item .plate.back {
+        @include plate($default-blue-hover, 12px);
+      }
+      .dashed {
+        color: $default-blue-hover;
+      }
+    }
+    &.disabled {
+      .item .plate.back {
+        @include plate($disabled, 12px);
+      }
+      .item .description {
+        color: $disabled;
+        opacity: 0.5;
+      }
+      img {
+        opacity: 0.5;
+      }
+      .bottom-text {
+        color: $text_disabled_yellow;
+        text-shadow: 0px 1px 0px $text_color_black;
+      }
+    }
+  }
+
+  @include media_interval($media900, $media1200) {
+    .item-wrapper {
+      width: 50%;
+
+      &:nth-child(2) {
+        width: 100%;
+      }
+    }
+  }
+  @include media_interval(0, $media900) {
+    .item-wrapper {
+      width: 100%;
+    }
+  }
+  @include media_interval(0, $media400) {
+    padding: 25px 0;
+
+    .item-wrapper {
+      .item {
+        width: 232px;
+        height: 390px;
+
+        .plate.front img {
+          max-width: 278px;
+        }
+        .description {
+          padding: 21px 20px 0 30px;
+        }
+      }
+    }
+  }
+}
